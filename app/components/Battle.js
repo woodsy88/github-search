@@ -42,15 +42,12 @@ class PlayerInput extends Component {
   }
 
   handleChange(e){
-    console.log("handle change ran")
     let value = e.target.value;
     this.setState({ username: value})
-    console.log(this.state.username);    
   }
 
   handleSubmit (e) {
     e.preventDefault()
-    console.log("PlayerInput handle submit ran", this.props);
     this.props.onSubmit(this.state.username)  
   }
 
@@ -68,7 +65,6 @@ class PlayerInput extends Component {
               placeholder='github username'
               className="input-light"
               id='username'
-
               />   
         </div>
           <button 
@@ -89,7 +85,6 @@ PlayerInput.propTypes = {
 }
 
 function PlayerPreview ({ username, onReset, label }) {
-  console.log(username, onReset, label)
   return (
     <div className="column player">
       <h3 className="player-label">{label}</h3>
@@ -130,7 +125,6 @@ export default class Battle extends Component {
   }
 
   handleSubmit(id, player){
-    console.log("Battle handle submit ran", id, player)
     this.setState({ 
       [id]: player
     })
@@ -184,7 +178,6 @@ export default class Battle extends Component {
               className="btn btn dark-btn btn-space"
               onClick={() => this.setState({battle: true})}
               > Get Results
-
             </button> 
 
           )}
