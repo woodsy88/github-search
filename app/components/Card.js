@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 
-export default function Card ({ header, subheader, avatar, href, name }) {
+export default function Card ({ header, subheader, avatar, href, name, children }) {
   return (
     <div className="card bg-light">
       <h4 className='header-lg center-text'>
@@ -22,11 +22,18 @@ export default function Card ({ header, subheader, avatar, href, name }) {
         <a className='link' href={href}>
           {name}
         </a>
-      </h2>      
+      </h2>
+      <div>
+        {children}  
+      </div>      
     </div>
   )
 }
 
 Card.propTypes = {
-
+  header: PropTypes.string.isRequired,
+  subheader: PropTypes.string,
+  avatar: PropTypes.string.isRequired,
+  href: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired
 }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
+import Card from './Card';
 
 import { fetchPopularRepos } from '../utils/api';
 import { FaUser, FaStar, FaCodeBranch, FaExclamationTriangle } from 'react-icons/fa';
@@ -34,18 +35,15 @@ function ReposGrid ({ repos }) {
         const { login, avatar_url } = owner;
 
         return (
-          <li key={html_url} className="repo bg-light">
-            #{index + 1}
-            <img 
-              className="avatar"
-              src={avatar_url} 
-              alt={`Avatar for ${login}`}/>
-              <h2 className='center-text'>
-                <a className='link' href={html_url}>{login}</a>
-              </h2>
+            <Card
+              header={`${index} + 1`}
+              avatar={avatar_url}
+              href={html_url}
+              name={login}
+            >
               <ul className='card-list'>
                 <li>
-                 <FaUser color='rgb(255,191,116)' size={22} />
+                  <FaUser color='rgb(255,191,116)' size={22} />
                   <a href={`https://github.com/${login}`}>
                     {login}
                   </a>
@@ -53,13 +51,13 @@ function ReposGrid ({ repos }) {
                 <li>
                   <FaStar color='rgb(255,215,0)' size={22} />
                   {stargazers_count.toLocaleString()} stars
-                </li>
+                  </li>
                 <li>
                   <FaExclamationTriangle color='rgb(255,215,0)' size={22} />
                   {open_issues.toLocaleString()} open issues
-                </li>                
-              </ul>
-          </li>
+                  </li>
+              </ul>              
+            </Card>
         )
 
       })}
