@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import Card from './Card';
+import Loading from './Loading';
 
 import { fetchPopularRepos } from '../utils/api';
 import { FaUser, FaStar, FaCodeBranch, FaExclamationTriangle } from 'react-icons/fa';
@@ -36,7 +37,7 @@ function ReposGrid ({ repos }) {
 
         return (
             <Card
-              header={`${index} + 1`}
+              header={`${index + 1}`}
               avatar={avatar_url}
               href={html_url}
               name={login}
@@ -133,7 +134,7 @@ export default class Popular extends Component {
             updateLanguage={this.updateLanguage}
             selectedLanguage={selectedLanguage}
           />
-          {this.isLoading() && <p>LOADING...</p>}
+          {this.isLoading() && <Loading text='Fetching Repos' />}
 
           {error && <p className="error center-text">{error}</p>}
 

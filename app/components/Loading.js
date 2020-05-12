@@ -1,4 +1,16 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
+const styles = {
+  content: {
+    fontSize: '35px',
+    position: 'absolute',
+    left: '0',
+    right: '0',
+    marginTop: '20px',
+    textAlign: 'center'
+  }
+}
 
 
 export default class Loading extends Component {
@@ -6,26 +18,47 @@ export default class Loading extends Component {
     super(props)
 
     this.state = {
-      content: 'Loading'
+      content: props.text
     }    
   }
 
   componentDidMount() {
-    window.setInterval(() =>{
-      this.state.content === 'Loading' + '...'
-        ? this.setState({ content: 'Loading'})
+    const {speed, text } = this.props;
+
+    // setting an instance property - using this.interval allows the componentWillUnmount function to access the variable
+    // using an instance property allows other functions and parts of the component to access the variable
+    this.interval = window.setInterval(() =>{
+      console.log("i am a memory leak")
+      this.state.content === text + '...'
+        ? this.setState({ content: text})
         : this.setState(({ content }) => ({ content: content + '.' }) )
-    }, 300)
+    }, speed)
+  }
+
+  componentWillUnmount(){
+    // this.interval is an instance property set in the componentDidMount
+    window.clearInterval(this.interval)
   }
 
   render () {
 
     return (
-      <p>
+      <p style={styles.content}>
         {this.state.content}
       </p>
     )
   }
 
  
+}
+
+Loading.propTypes = {
+  text: PropTypes.string.isRequired,
+  speed: PropTypes.number.isRequired
+}
+
+
+Loading.defaultProps = {
+  speed: 300,
+  text: 'Loading'
 }

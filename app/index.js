@@ -17,7 +17,7 @@ class App extends React.Component {
     return (
     <>
       <div className="container">
-        <Battle />
+        <Popular />
       </div>
     </>
     )

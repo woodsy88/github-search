@@ -77,7 +77,9 @@ export default class Results extends React.Component {
     console.log('loser', loser);
 
     if (loading === true) {
-      return <Loading />
+      return <Loading 
+                text="fetching data"
+                speed={100} />
     }
 
     if (error) {
