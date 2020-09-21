@@ -16,7 +16,7 @@ const LanguagesNav = ({ selectedLanguage, updateLanguage}) => {
       {languages.map((language, index) => (
         <li key={index}>
           <button
-            style={{ color: selectedLanguage === language ? 'rgb(187,46,31)' : '#000' }}
+            style={{ color: selectedLanguage === language ? '#BA6C65' : '#000' }}
             onClick={() => updateLanguage(language)}
             className="btn-clear nav-link">
             {language}
