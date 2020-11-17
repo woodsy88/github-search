@@ -38,16 +38,18 @@ class PlayerInput extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
   }
+
   handleSubmit(event) {
     event.preventDefault()
-
     this.props.onSubmit(this.state.username)
   }
+
   handleChange(event) {
     this.setState({
       username: event.target.value
     })
   }
+  
   render() {
     return (
       <form className='column player' onSubmit={this.handleSubmit}>
@@ -162,28 +164,28 @@ export default class Battle extends React.Component {
         <Instructions />
 
         <div className='players-container'>
-          <h1 className='center-text header-lg'>Players</h1>
+          <h1 className='center-text header-lg'>Github Accounts</h1>
           <div className='row space-around'>
             {playerOne === null
               ? <PlayerInput
-                  label='Player One'
+                  label='Github User #1'
                   onSubmit={(player) => this.handleSubmit('playerOne', player)}
                 />
               : <PlayerPreview
                   username={playerOne}
-                  label='Player One'
+                  label='Github User #1'
                   onReset={() => this.handleReset('playerOne')}
                 />
             }
 
             {playerTwo === null
               ? <PlayerInput
-                  label='Player Two'
+                  label='Github User #2'
                   onSubmit={(player) => this.handleSubmit('playerTwo', player)}
                 />
               : <PlayerPreview
                   username={playerTwo}
-                  label='Player Two'
+                  label='Github User #2'
                   onReset={() => this.handleReset('playerTwo')}
                 />
             }
