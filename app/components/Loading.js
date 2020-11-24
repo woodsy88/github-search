@@ -25,8 +25,9 @@ export default class Loading extends Component {
   componentDidMount() {
     const {speed, text } = this.props;
 
-    // setting an instance property - using this.interval allows the componentWillUnmount function to access the variable
+    // the "this" in this.interval is setting an instance property in the componentDidMount that can be accessed in componentDidUnMount() and elsewhere in the class
     // using an instance property allows other functions and parts of the component to access the variable
+    // setInterval - every 300 seconds, the function will be invoked
     this.interval = window.setInterval(() =>{
       console.log("i am a memory leak")
       this.state.content === text + '...'
@@ -36,27 +37,25 @@ export default class Loading extends Component {
   }
 
   componentWillUnmount(){
-    // this.interval is an instance property set in the componentDidMount
+     // the "this" in this.interval is an instance property set in the componentDidMount
+    // we are clearing the interval, by passing it the interval stored in ComponentDidMount()
+    console.log("clearing memory leak")
     window.clearInterval(this.interval)
   }
 
   render () {
-
     return (
       <p style={styles.content}>
         {this.state.content}
       </p>
     )
-  }
-
- 
+  } 
 }
 
 Loading.propTypes = {
   text: PropTypes.string.isRequired,
   speed: PropTypes.number.isRequired
 }
-
 
 Loading.defaultProps = {
   speed: 300,

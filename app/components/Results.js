@@ -6,6 +6,9 @@ import PropTypes from 'prop-types'
 import Loading from './Loading'
 import Tooltip from './Tooltip'
 
+// this component is passed 2 players, 
+  // fetches info about them, 
+  // renders 2 cards, 1 for each
 
 const styles = {
   container: {
@@ -86,7 +89,7 @@ export default class Results extends React.Component {
   }
   componentDidMount () {
     const { playerOne, playerTwo } = this.props
-
+    // from api.js
     battle([ playerOne, playerTwo ])
       .then((players) => {
         this.setState({
@@ -144,7 +147,7 @@ export default class Results extends React.Component {
   
   
         </div>
-        <button className="dark-btn" onClick={this.props.onReset}>reset battle</button>
+        <button className="dark-btn" onClick={this.props.onReset}>Reset</button>
       </>
     )
   }

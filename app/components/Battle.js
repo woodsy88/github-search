@@ -2,6 +2,7 @@ import React from 'react'
 import { FaUserFriends, FaFighterJet, FaTrophy, FaTimesCircle } from 'react-icons/fa'
 import PropTypes from 'prop-types'
 import Results from './Results'
+import Tooltip from './Tooltip'
 
 function Instructions () {
   return (
@@ -11,7 +12,7 @@ function Instructions () {
       </h1>
       <ol className='container-sm grid center-text battle-instructions'>
         <li>
-          <h3 className='header-sm'>Enter two Github users</h3>
+            <h3 className='header-sm'>Enter two Github users</h3>
           <FaUserFriends className='bg-light' color='rgb(255, 191, 116)' size={30} />
         </li>
         <li>
@@ -26,7 +27,7 @@ function Instructions () {
     </div>
   )
 }
-
+          
 class PlayerInput extends React.Component {
   constructor(props) {
     super(props)
@@ -128,6 +129,7 @@ export default class Battle extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleReset = this.handleReset.bind(this)
     this.onReset = this.onReset.bind(this)
+    this.onKeyEnter = this.onKeyEnter.bind(this)
   }
   handleSubmit(id, player) {
     this.setState({
@@ -148,6 +150,14 @@ export default class Battle extends React.Component {
     })
   }
 
+  onKeyEnter(e){
+    if (e.charCode === 13) {
+      this.setState({
+        battle: true
+      })
+    }
+  }
+
 
   render() {
     const { playerOne, playerTwo, battle } = this.state
@@ -164,7 +174,7 @@ export default class Battle extends React.Component {
         <Instructions />
 
         <div className='players-container'>
-          <h1 className='center-text header-lg'>Github Accounts</h1>
+            <h1 className='center-text header-lg'>Github Accounts</h1>
           <div className='row space-around'>
             {playerOne === null
               ? <PlayerInput
@@ -194,6 +204,7 @@ export default class Battle extends React.Component {
 
           {playerOne && playerTwo && (
             <button
+              onKeyPress={this.onKeyEnter}
               className='btn dark-btn btn-space'
               onClick={() => this.setState({battle: true})}
             >

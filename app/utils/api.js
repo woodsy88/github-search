@@ -56,7 +56,7 @@ function sortPlayers (players) {
 }
 
 
-// MAIN FUNCTION
+// MAIN FUNCTION - players is an array
 export function battle(players) {
   return Promise.all([
     getUserData(players[0]),

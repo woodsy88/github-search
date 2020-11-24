@@ -125,7 +125,7 @@ export default class Popular extends Component {
 
   isLoading() {
     const { selectedLanguage, repos, error } = this.state;
-    // if repos object does not have a key on it of the selectedLanguage and no errors
+    // if repos object does NOT have a key on it of the selectedLanguage and no errors
     return !repos[selectedLanguage] && error === null
   }
 
