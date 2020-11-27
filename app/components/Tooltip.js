@@ -42,5 +42,4 @@ Tooltip.propTypes = {
   text: PropTypes.string.isRequired,
 }
 
-// whatever witHover returns is whats rendered when you call toolTip
 export default Tooltip
