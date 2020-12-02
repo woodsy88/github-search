@@ -12,18 +12,29 @@ const LanguagesNav = ({ selectedLanguage, updateLanguage}) => {
   const languages = ['All', 'JavaScript', 'Ruby', 'Python', 'CSS'];
 
   return (
-    <ul className="flex-center">
-      {languages.map((language, index) => (
-        <li key={index}>
-          <button
-            style={{ color: selectedLanguage === language ? '#BA6C65' : '#000' }}
-            onClick={() => updateLanguage(language)}
-            className="btn-clear nav-link">
-            {language}
-          </button>
-        </li>
-      ))}
-    </ul>    
+<>
+      <ul className="flex-center">
+        {languages.map((language, index) => (
+          <li key={index}>
+            <button
+              style={{ color: selectedLanguage === language ? '#BA6C65' : '#000' }}
+              onClick={() => updateLanguage(language)}
+              className="btn-clear nav-link">
+              {language}
+            </button>
+          </li>
+        ))}
+      </ul>
+
+      <div className="flex-center">
+        { selectedLanguage === 'All' ? 
+          <h2>The top 30 Github Repos</h2> : 
+          <h2>The top 30 Github Repos for {selectedLanguage}</h2> 
+        }
+      </div>
+      
+      
+</>
 
   )
 }

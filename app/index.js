@@ -6,6 +6,8 @@ import Popular from './components/Popular';
 import Battle from './components/Battle';
 import Nav from './components/Nav';
 
+import { BrowserRouter as Router, Route} from 'react-router-dom'
+
 import { ThemeProvider } from './contexts/theme'
 
 class App extends React.Component {
@@ -32,15 +34,17 @@ class App extends React.Component {
     
     return (
     <>
-     <ThemeProvider value={this.state}>
-       <div className={this.state.theme}>
-          <div className="container">
-            <Nav />
-            <Battle />
-            <Popular />
+      <Router>
+        <ThemeProvider value={this.state}>
+          <div className={this.state.theme}>
+            <div className="container">
+              <Nav />
+              <Route exact path="/" component={Popular} />
+              <Route path="/compare" component={Battle} />
+            </div>
           </div>
-       </div>
-     </ThemeProvider>
+        </ThemeProvider>
+      </Router>
     </>
     )
   }
